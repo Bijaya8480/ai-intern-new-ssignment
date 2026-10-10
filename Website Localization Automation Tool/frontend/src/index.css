@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   Premium Design System — Color Tokens (HSL via CSS custom properties)
+   ========================================================================== */
+:root {
+  /* Light palette */
+  --color-bg: 220 27% 97%;          /* cool workspace */
+  --color-surface: 0 0% 100%;       /* #FFFFFF */
+  --color-text: 222 47% 11%;        /* #0F172A */
+  --color-text-secondary: 215 16% 43%; /* slate */
+  --color-muted: 220 22% 96%;
+  --color-border: 218 20% 90%;
+  --color-primary: 221 83% 53%;     /* clear blue */
+  --color-primary-foreground: 0 0% 100%;
+  --color-success: 152 65% 40%;     /* #10B981 — Emerald */
+  --color-success-foreground: 0 0% 100%;
+  --color-warning: 36 93% 58%;      /* #F59E0B — Amber */
+  --color-warning-foreground: 220 30% 8%;
+  --color-destructive: 0 84% 60%;   /* #EF4444 — Red */
+  --color-destructive-foreground: 0 0% 100%;
+  --radius: 0.875rem;
+  --radius-input: 0.5rem;           /* 8px */
+}
+
+/* Dark palette */
+.dark {
+  --color-bg: 0 0% 4%;             /* #09090B */
+  --color-surface: 220 15% 4%;     /* #111113 */
+  --color-text: 0 0% 98%;           /* #FAFAFA */
+  --color-text-secondary: 220 5% 67%; /* #A1A1AA */
+  --color-muted: 220 10% 12%;       /* #1A1A1D */
+  --color-border: 220 5% 15%;      /* #27272A */
+  --color-primary: 249 82% 53%;
+  --color-success: 152 65% 48%;
+  --color-warning: 36 93% 62%;
+  --color-destructive: 0 84% 63%;
+}
+
+/* ==========================================================================
+   Base reset & typography
+   ========================================================================== */
+@layer base {
+  * {
+    @apply border-transparent outline-0 transition-none;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", "Roboto",
+      "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    font-weight: 400;
+    min-width: 320px;
+  }
+
+  /* Selection colour uses the primary tint */
+  ::selection {
+    background: hsl(var(--color-primary) / 0.2);
+  }
+
+  /* Custom scrollbar — subtle */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--color-border));
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--color-muted-foreground) / 0.4);
+  }
+
+  /* Smooth focus rings for keyboard users */
+  :focus-visible {
+    outline: 2px solid hsl(var(--color-primary));
+    outline-offset: 2px;
+  }
+
+  /* Remove default button styling */
+  button {
+    font-family: inherit;
+  }
+
+  input,
+  select,
+  textarea {
+    color-scheme: light;
+  }
+
+  /* Prose-like line length cap for long reading text */
+  .prose {
+    max-width: 65ch;
+  }
+
+  .dark input,
+  .dark select,
+  .dark textarea {
+    color-scheme: dark;
+  }
+
+  .workspace-grid {
+    background-image: radial-gradient(hsl(var(--color-border) / 0.56) 0.65px, transparent 0.65px);
+    background-size: 18px 18px;
+  }
+}
+
+/* ==========================================================================
+   Component layer — premium utilities
+   ========================================================================== */
+@layer components {
+  /* Container that caps width and centres content */
+  .container {
+    width: min(100% - 2rem, 78rem);
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  /* Subtle divider */
+  .divider {
+    border-top: 1px solid hsl(var(--color-border));
+  }
+
+  /* Icon button — square, accessible */
+  .icon-btn {
+    @apply inline-flex items-center justify-center rounded-lg p-2 text-muted-foreground
+      hover:bg-muted hover:text-foreground transition-colors disabled:opacity-50
+      disabled:pointer-events-none;
+  }
+
+  /* Soft badge wrapper for status indicators */
+  .status-dot {
+    @apply inline-block h-2 w-2 rounded-full;
+  }
+
+  /* Smooth page transitions */
+  .page-enter {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  .page-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 200ms ease-out, transform 200ms ease-out;
+  }
+  .page-exit {
+    opacity: 1;
+  }
+  .page-exit-active {
+    opacity: 0;
+    transition: opacity 150ms ease-out;
+  }
+}
+
+/* ==========================================================================
+   Utility classes
+   ========================================================================== */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* 8px spacing helpers (matching the design system grid) */
+.space-y-3 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.75rem; }
+.space-y-5 > :not([hidden]) ~ :not([hidden]) { margin-top: 1.25rem; }

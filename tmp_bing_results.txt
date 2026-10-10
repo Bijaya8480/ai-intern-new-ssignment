@@ -1,0 +1,32 @@
+hi: नमस्ते
+or: ନମସ୍କାର
+bn: হ্যালো
+ta: ஹலோ
+te: హలో
+mr: हॅलो
+gu: હેલો
+pa: ਸਤ ਸ੍ਰੀ ਅਕਾਲ
+as: নমস্কাৰ
+kn: ಹಲೋ
+ml: ഹലോ
+ur: ہیلو
+ne: नमस्ते
+sa: नमस्ते
+es: hola
+fr: bonjour
+de: hallo
+ar: مرحبا
+it: ciao
+pt: olá
+nl: hallo
+ru: привет
+ja: こんにちは
+ko: 안녕하세요
+zh-cn: 你好
+zh-tw: 你好
+tr: merhaba
+sv: hej
+pl: cześć
+ro: salut
+th: สวัสดี
+vi: xin chào

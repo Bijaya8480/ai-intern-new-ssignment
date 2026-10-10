@@ -1,0 +1,31 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: loc-tool-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./publisher:/app/publisher
+      - loc-tool-data:/app
+    environment:
+      - APP_ENV=production
+      - DATABASE_URL=sqlite:////app/loc_tool.db
+      - FRONTEND_URL=http://localhost:5174
+      - USE_GOOGLE_TRANSLATE=true
+    depends_on:
+      - frontend
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: loc-tool-frontend
+    ports:
+      - "5174:80"
+    restart: unless-stopped
+
+volumes:
+  loc-tool-data:
